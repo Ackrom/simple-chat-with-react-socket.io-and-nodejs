@@ -1,0 +1,56 @@
+input{
+    background:rgba(32,34,37,.6);
+    color:hsla(0,0%,100%,.7);
+    border: none;
+    border-radius: 8px 0px 0px 8px;
+    font-size: 0.9375rem;
+    font-weight: 400;
+    letter-spacing: -0.025rem;
+    line-height: 1.25rem;
+    margin:0;
+    max-height: 144px;
+    min-height: 20px;
+    padding: 10px;
+    resize: none;
+    width: 100%;
+}
+form{
+    width:70.25vw;
+    display: flex;
+    margin:auto;
+    margin-top: 19px;
+    margin-bottom: 19px;
+}
+form > button {
+    display: inline-block;
+
+    border-radius: 0px 8px 8px 0px;
+    background:rgba(72, 74, 77, 0.6);
+    color:hsla(0,0%,100%,.7);
+    border: none;
+    font-size: 0.9375rem;
+    letter-spacing: -0.025rem;
+    line-height: 1.25rem;
+    margin:0;
+    padding: 10px;
+    resize: none;
+}
+form > ::placeholder {
+    color:hsla(0,0%,75%,.7);
+}
+.container{
+    background: #36393f;
+    margin: 0 11.25vw 0;
+    display: flex;
+    flex-direction: column;
+}
+.chat-msj-container{
+    height: 81.25vh;
+    overflow: scroll;
+    overflow-x: hidden;
+    padding-left: 2.25em;
+}
+.chat-msj{
+    color:#dcddde;
+    margin-bottom: .2em;
+}
