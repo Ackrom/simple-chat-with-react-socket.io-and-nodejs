@@ -23,9 +23,10 @@ class Message{
         let data = fs.readFileSync(this.fileDir,'utf8');
         for (const value of data.split('\n')) {
             try {
-                output.push(JSON.parse(value));
+                if(value.trim() && JSON.parse(value).msj.trim())
+                    output.push(JSON.parse(value));
             } catch (error) {
-                console.log(error.Message);
+                console.log(error);
             }
         }
         return output;

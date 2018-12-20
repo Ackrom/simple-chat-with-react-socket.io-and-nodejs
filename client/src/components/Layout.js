@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import "./Layout.css";
 import io from 'socket.io-client';
 import axios from 'axios';
+import user_ico from "../asets/user_ico.png";
 
 export default class Layout extends Component {
     constructor(props){
@@ -61,16 +62,30 @@ export default class Layout extends Component {
         const { msj } = this.state;
         return(
             <div className="container">
-                <div className="chat-msj-container" ref={(ref)=>this.messagesEnd = ref}>
+                <div className="chat-msj-container scroll" ref={(ref)=>this.messagesEnd = ref}>
                     {this.state.prevMensajes.map((msj,indx)=>{
                         return (
-                            <div className="chat-msj" key={indx}>{msj.msj}</div>
+                            <div className="chat-msj">
+                                <hr/>
+                                <div>
+                                    <img src={user_ico} />
+                                    <span>Nombre del usuario</span>
+                                    <span>Fecha y hora</span>
+                                </div>
+                                <div key={indx}>{msj.msj}</div>
+                            </div>
+                            
                         );
                     })}
 
                     {this.state.mensajes.map((msj,indx)=>{
                         return (
-                            <div className="chat-msj" key={indx}>{msj}</div>
+                            <div className="chat-msj">
+                                <hr/>
+
+                                <img src={user_ico} />
+                                <div key={indx}>{msj}</div>
+                            </div>
                         );
                     })}
                     

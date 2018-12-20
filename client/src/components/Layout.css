@@ -54,3 +54,57 @@ form > ::placeholder {
     color:#dcddde;
     margin-bottom: .2em;
 }
+.chat-msj > div:first-of-type {
+    display:flex;
+    align-items: center;
+    color: hsla(0,0%,100%,.2);
+}
+.chat-msj > div:first-of-type > img {
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+}
+.chat-msj > div:first-of-type > span{
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    margin-left: .3rem;
+}
+
+.chat-msj > div:first-of-type > span:first-of-type {
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0;
+}
+
+
+hr{
+    border-bottom-color: hsla(0,0%,100%,.04);
+}
+
+
+/*
+ *  scroll bar
+ */
+
+ .scroll::-webkit-scrollbar-track
+ {
+     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+     border-radius: 10px;
+     background-color: #2f3136;
+ }
+ 
+ .scroll::-webkit-scrollbar
+ {
+     width: 12px;
+     background-color: #2f3136;
+ }
+ 
+ .scroll::-webkit-scrollbar-thumb
+ {
+     border-radius: 10px;
+     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+     background-color: #555;
+ }
+ 
