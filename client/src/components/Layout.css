@@ -46,10 +46,13 @@ form > ::placeholder {
     height: 100vh;
 }
 .chat-msj-container{
-    
+    height: 85vh;
     overflow: scroll;
     overflow-x: hidden;
     padding-left: 2.25em;
+}
+.chat-msj-form{
+    height: 15 vh;
 }
 .chat-msj{
     color:#dcddde;

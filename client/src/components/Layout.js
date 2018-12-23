@@ -35,7 +35,7 @@ export default class Layout extends Component {
         const socket = io(this.baseUrl);
         this.setState({socket});
         socket.on('chat',(data)=>{
-            this.setState({mensajes:[...this.state.mensajes,data.msj]});
+            this.setState({mensajes:[...this.state.mensajes,data]});
         })
     }
     prevData = ()=>{
@@ -45,7 +45,9 @@ export default class Layout extends Component {
     }
     addMsj = (e)=>{
         e.preventDefault();
-        this.state.socket.emit('chat',{msj:this.state.msj});
+        if(!this.state.msj)
+            return;
+        this.state.socket.emit('chat',{msj:this.state.msj,user:"TODO",date:new Date()});
         this.setState({msj:''});
     }
     setMsj = (e)=>{
@@ -58,6 +60,17 @@ export default class Layout extends Component {
         this.messagesEnd.scrollTop = maxScrollTop>0 ? maxScrollTop : 0;
     }
     
+
+    dateFormat = (date)=>{
+        if(!date)
+            return;
+        let objDate = new Date(date);
+        let day = objDate.getDate();
+        let month = objDate.getMonth()+1;
+        let year = objDate.getFullYear();
+
+        return `enviado el día ${day} del mes ${month} del año ${year}`;
+    }
     render(){
         const { msj } = this.state;
         return(
@@ -65,14 +78,14 @@ export default class Layout extends Component {
                 <div className="chat-msj-container scroll" ref={(ref)=>this.messagesEnd = ref}>
                     {this.state.prevMensajes.map((msj,indx)=>{
                         return (
-                            <div className="chat-msj">
+                            <div key={indx+"-o"} className="chat-msj">
                                 <hr/>
                                 <div>
-                                    <img src={user_ico} />
-                                    <span>Nombre del usuario</span>
-                                    <span>Fecha y hora</span>
+                                    <img src={user_ico} alt="user_ico" />
+                                    <span>{msj.user}</span>
+                                    <span>{this.dateFormat(msj.date)}</span>
                                 </div>
-                                <div key={indx}>{msj.msj}</div>
+                                <div >{msj.msj}</div>
                             </div>
                             
                         );
@@ -80,17 +93,20 @@ export default class Layout extends Component {
 
                     {this.state.mensajes.map((msj,indx)=>{
                         return (
-                            <div className="chat-msj">
+                            <div key={indx+"-n"} className="chat-msj">
                                 <hr/>
-
-                                <img src={user_ico} />
-                                <div key={indx}>{msj}</div>
+                                <div>
+                                    <img src={user_ico} alt="user_ico" />
+                                    <span>{msj.user}</span>
+                                    <span>{this.dateFormat(msj.date)}</span>
+                                </div>
+                                <div >{msj.msj}</div>
                             </div>
                         );
                     })}
                     
                 </div>
-                <div>
+                <div className="chat-msj-form">
                     <hr/>
                     <form onSubmit={this.addMsj}>
                         <input type="text" placeholder="Enviar mensaje a #general" onChange={this.setMsj} value={msj}></input>
