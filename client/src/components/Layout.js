@@ -90,7 +90,7 @@ export default class Layout extends Component {
                     })}
                     
                 </div>
-                <div>
+                <div className="chat-msj-form">
                     <hr/>
                     <form onSubmit={this.addMsj}>
                         <input type="text" placeholder="Enviar mensaje a #general" onChange={this.setMsj} value={msj}></input>
