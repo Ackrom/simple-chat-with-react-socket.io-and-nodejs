@@ -13,6 +13,7 @@ export default class Layout extends Component {
             mensajes:[],
             prevMensajes:[],
             msj:'',
+            userName:this.props.user
         };
         this.messagesEnd=null;
         this.baseUrl = 'http://localhost:4000/';
@@ -47,7 +48,7 @@ export default class Layout extends Component {
         e.preventDefault();
         if(!this.state.msj)
             return;
-        this.state.socket.emit('chat',{msj:this.state.msj,user:"TODO",date:new Date()});
+        this.state.socket.emit('chat',{msj:this.state.msj,user:this.state.userName,date:new Date()});
         this.setState({msj:''});
     }
     setMsj = (e)=>{
