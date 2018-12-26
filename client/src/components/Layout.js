@@ -13,10 +13,22 @@ export default class Layout extends Component {
             mensajes:[],
             prevMensajes:[],
             msj:'',
-            userName:this.props.user
+            userName:this.props.user,
+            clientIP:'',
         };
         this.messagesEnd=null;
-        this.baseUrl = 'http://localhost:4000/';
+
+        // Get the URL and get ONLY the domain name
+        let domainName = window.location.href.split('/')[2].split(':')[0];
+        let port = 4000;
+        this.baseUrl = `http://${domainName}:${port}/`;
+       
+        // To get the user IP
+        var findIP = new Promise(r=>{var w=window,a=new (w.RTCPeerConnection||w.mozRTCPeerConnection||w.webkitRTCPeerConnection)({iceServers:[]}),b=()=>{};a.createDataChannel("");a.createOffer(c=>a.setLocalDescription(c,b,b),b);a.onicecandidate=c=>{try{c.candidate.candidate.match(/([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/g).forEach(r)}catch(e){}}})
+        findIP.then(function(ip ){
+            this.setState({clientIP:ip});
+        }.bind(this))
+        .catch(e => console.error(e));
     }
 
     componentWillMount() {
@@ -73,7 +85,7 @@ export default class Layout extends Component {
         return `enviado el día ${day} del mes ${month} del año ${year}`;
     }
     render(){
-        const { msj } = this.state;
+        const { msj, clientIP } = this.state;
         return(
             <div className="container">
                 <div className="chat-msj-container scroll" ref={(ref)=>this.messagesEnd = ref}>
@@ -113,6 +125,7 @@ export default class Layout extends Component {
                         <input type="text" placeholder="Enviar mensaje a #general" onChange={this.setMsj} value={msj}></input>
                         <button type="button" onClick={this.addMsj}>&nbsp;&nbsp;&nbsp;+&nbsp;&nbsp;&nbsp;</button>
                     </form>
+                    <h2>IP: {clientIP}</h2> 
                 </div>
             </div>
         );

@@ -14,7 +14,6 @@ export default class UserName extends Component{
         if (!event)
             return;
         this.setState({name:event.target.value});
-        
     }
     onSubmit = (event)=>{
         event.preventDefault();
@@ -27,7 +26,7 @@ export default class UserName extends Component{
                     <h1>Nombre de usuario</h1>
                     <form  onSubmit={this.onSubmit}>
                         
-                        <input placeholder="Nombre de usuario cool" value={this.state.name} name='userName' onChange={this.setName} ref={(val)=>console.log(val)} />
+                        <input placeholder="Nombre de usuario cool" value={this.state.name} name='userName' onChange={this.setName} />
                         <button>Usar este nombre</button>
                     </form>
                 </div>
