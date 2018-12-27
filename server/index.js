@@ -29,6 +29,6 @@ io.on("connection", (socket) => {
     socket.on("chat", async (chat) => {
         console.log("New Msj: ", chat);
         let response = await message.addMsj(JSON.stringify(chat));
-        socket.emit("chat", chat);
+        io.emit("chat", chat);
     });
 });
